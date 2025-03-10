@@ -32,12 +32,14 @@ export default function Navbar() {
           <Link
             href='/'
             className='text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400'
+            onClick={() => setMenuOpen(!menuOpen)}
           >
             Home
           </Link>
           <Link
             href='/dashboard'
             className='text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400'
+            onClick={() => setMenuOpen(!menuOpen)}
           >
             Dashboard
           </Link>
@@ -64,6 +66,7 @@ export default function Navbar() {
             <Link
               href='/login'
               className='bg-blue-500 text-white px-4 py-2 rounded-md'
+              onClick={() => setMenuOpen(!menuOpen)}
             >
               Login
             </Link>
