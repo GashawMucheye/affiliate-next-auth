@@ -23,9 +23,11 @@ export default function Navbar() {
     <nav className='bg-white dark:bg-gray-900 shadow-md fixed top-0 left-0 w-full z-50'>
       <div className='max-w-7xl mx-auto px-6 py-4 flex justify-between items-center'>
         {/* Logo */}
-        <h1 className='text-2xl font-bold text-gray-900 dark:text-white'>
-          Affiliate Hub
-        </h1>
+        <Link href='/'>
+          <h1 className='text-2xl font-bold text-gray-900 dark:text-white'>
+            Affiliate Hub
+          </h1>
+        </Link>
 
         {/* Desktop Menu */}
         <div className='hidden md:flex space-x-6 items-center'>
