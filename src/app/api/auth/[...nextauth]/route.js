@@ -64,7 +64,6 @@ export const authOptions = {
   },
   pages: {
     signIn: '/login',
-    error: '/auth/error', // Custom error page
   },
   cookies: {
     sessionToken: {
