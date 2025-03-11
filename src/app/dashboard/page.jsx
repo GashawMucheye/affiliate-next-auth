@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react';
 export default function Dashboard() {
+  const { data: session, status } = useSession();
+  const router = useRouter();
   const [products, setProducts] = useState([]);
   const [email, setEmail] = useState('');
   const [emailMessage, setEmailMessage] = useState('');
@@ -24,6 +26,13 @@ export default function Dashboard() {
   useEffect(() => {
     fetchProducts();
   }, []);
+  useEffect(() => {
+    if (status !== 'loading' && (!session || session.user.role !== 'admin')) {
+      router.push('/login'); // Redirect unauthorized users
+    }
+  }, [session, status, router]);
+
+  if (status === 'loading') return <p>Loading...</p>;
 
   const handleSendEmails = async () => {
     setIsSending(true);
