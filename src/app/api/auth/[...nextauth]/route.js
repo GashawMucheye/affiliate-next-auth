@@ -20,23 +20,19 @@ export const authOptions = {
         await connectToDatabase();
         const user = await User.findOne({ email: credentials.email });
 
-        if (!user) {
-          throw new Error('User not found');
-        }
+        if (!user) throw new Error('User not found');
 
         const passwordMatch = await bcrypt.compare(
           credentials.password,
           user.password
         );
-        if (!passwordMatch) {
-          throw new Error('Invalid credentials');
-        }
+        if (!passwordMatch) throw new Error('Invalid credentials');
 
         return {
           id: user._id.toString(),
           name: user.name,
           email: user.email,
-          role: user.role, // Attach role to session
+          role: user.role, // Ensure role is included
         };
       },
     }),
@@ -45,7 +41,7 @@ export const authOptions = {
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
-        token.role = user.role; // Include role in token
+        token.role = user.role; // Store role in token
       }
       return token;
     },
@@ -58,22 +54,9 @@ export const authOptions = {
     },
   },
   secret: process.env.NEXTAUTH_SECRET,
-  session: {
-    strategy: 'jwt',
-    maxAge: 30 * 24 * 60 * 60, // 30 days
-  },
   pages: {
     signIn: '/login',
-  },
-  cookies: {
-    sessionToken: {
-      name: `__Secure-next-auth.session-token`,
-      options: {
-        httpOnly: true,
-        sameSite: 'lax', // Change to "none" if using HTTPS
-        secure: process.env.NODE_ENV === 'production',
-      },
-    },
+    error: '/auth/error',
   },
 };
 

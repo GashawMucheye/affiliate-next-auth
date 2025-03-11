@@ -1,9 +1,12 @@
 'use client';
 
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 export default function Dashboard() {
   const { data: session, status } = useSession();
   const router = useRouter();
+
   const [products, setProducts] = useState([]);
   const [email, setEmail] = useState('');
   const [emailMessage, setEmailMessage] = useState('');
@@ -26,13 +29,18 @@ export default function Dashboard() {
   useEffect(() => {
     fetchProducts();
   }, []);
+
   useEffect(() => {
-    if (status !== 'loading' && (!session || session.user.role !== 'admin')) {
-      router.push('/login'); // Redirect unauthorized users
+    if (
+      status === 'unauthenticated' ||
+      (session && session.user.role !== 'admin')
+    ) {
+      router.replace('/login');
     }
   }, [session, status, router]);
 
   if (status === 'loading') return <p>Loading...</p>;
+  if (!session) return <p>Redirecting...</p>;
 
   const handleSendEmails = async () => {
     setIsSending(true);
@@ -179,7 +187,7 @@ export default function Dashboard() {
           </button>
         )}
       </div>
-      //!send promotional emails
+      {/* send promotional emails */}
       <div className='bg-white p-6 rounded-lg shadow-md'>
         <h2 className='text-xl font-semibold mb-4'>Send Promotional Emails</h2>
 
@@ -205,7 +213,7 @@ export default function Dashboard() {
           {isSending ? 'Sending...' : 'Send Emails'}
         </button>
       </div>
-      //!manage products
+      {/* manage products */}
       <h2 className='text-2xl font-semibold mt-6'>Manage Products</h2>
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-4'>
         {products.map((product) => (

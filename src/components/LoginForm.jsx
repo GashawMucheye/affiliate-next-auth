@@ -1,26 +1,26 @@
 'use client';
 import { signIn } from 'next-auth/react';
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 
 export default function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const router = useRouter();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setError('');
 
-    const res = await signIn('credentials', {
+    await signIn('credentials', {
       redirect: false,
       email,
       password,
     });
-
-    if (res.error) setError('Invalid credentials');
-    else router.push('/dashboard');
+    if (error) {
+      setError(data.error);
+    } else {
+      window.location.href = '/dashboard';
+    }
   };
   // bg-gray-100 px-4
 
