@@ -25,7 +25,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link href='/'>
           <h1 className='text-2xl font-bold text-gray-900 dark:text-white'>
-            Affiliate Hub
+            Affiliate Gashaw
           </h1>
         </Link>
 
