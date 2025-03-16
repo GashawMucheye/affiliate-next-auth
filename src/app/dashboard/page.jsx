@@ -52,7 +52,7 @@ export default function Dashboard() {
     setIsSending(false);
     if (res.ok) {
       alert('Emails sent successfully!');
-      setEmailSubject('');
+      setEmail('');
       setEmailMessage('');
     } else {
       alert('Failed to send emails.');
