@@ -1,11 +1,12 @@
 'use client';
 
 import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 export default function Dashboard() {
   const { data: session, status } = useSession();
   const router = useRouter();
+  const pathname = usePathname(); // Fix redirection issue
 
   const [products, setProducts] = useState([]);
   const [email, setEmail] = useState('');
@@ -30,14 +31,24 @@ export default function Dashboard() {
     fetchProducts();
   }, []);
 
+  // useEffect(() => {
+  //   if (
+  //     status === 'unauthenticated' ||
+  //     (session && session.user.role !== 'admin')
+  //   ) {
+  //     router.replace('/login');
+  //   }
+  // }, [session, status, router]);
+
+  // if (status === 'loading') return <p>Loading...</p>;
+  // if (!session) return <p>Redirecting...</p>;
   useEffect(() => {
-    if (
-      status === 'unauthenticated' ||
-      (session && session.user.role !== 'admin')
-    ) {
-      router.replace('/login');
+    if (status === 'unauthenticated') {
+      router.push('/login');
+    } else if (session && session.user.role !== 'admin') {
+      router.push('/');
     }
-  }, [session, status, router]);
+  }, [session, status, router, pathname]); // Include pathname
 
   if (status === 'loading') return <p>Loading...</p>;
   if (!session) return <p>Redirecting...</p>;
