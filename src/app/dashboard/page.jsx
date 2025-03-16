@@ -21,7 +21,7 @@ export default function Dashboard() {
   const [editingProduct, setEditingProduct] = useState(null);
 
   const fetchProducts = async () => {
-    const res = await fetch('/api/products');
+    const res = await fetch(`/api/products`);
     const data = await res.json();
     setProducts(data.products);
   };
@@ -44,7 +44,7 @@ export default function Dashboard() {
 
   const handleSendEmails = async () => {
     setIsSending(true);
-    const res = await fetch('/api/send-email', {
+    const res = await fetch(`/api/send-email`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, message: emailMessage }),
@@ -60,7 +60,7 @@ export default function Dashboard() {
   };
 
   const handleCreate = async () => {
-    const res = await fetch('/api/products', {
+    const res = await fetch(`/api/products`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newProduct),

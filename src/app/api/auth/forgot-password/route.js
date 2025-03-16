@@ -21,11 +21,7 @@ export async function POST(req) {
     let nodeEnv = process.env.NODE_ENV;
 
     // Send reset email
-    const resetUrl = `${
-      nodeEnv === 'development'
-        ? process.env.NEXT_PUBLIC_BASE_URL
-        : process.env.NEXT_PUBLIC_BASE_URL_PRODUCTION
-    }/reset-password?token=${resetToken}`;
+    const resetUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/reset-password?token=${resetToken}`;
     await sendEmail(
       user.email,
       'Reset Your Password',

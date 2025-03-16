@@ -54,12 +54,7 @@ export default function Navbar() {
               <span className='text-gray-900 dark:text-gray-300 font-medium'>
                 {session.user.name}
               </span>
-              {/* <button
-                onClick={() => signOut()}
-                className='bg-red-500 text-white px-4 py-2 rounded-md'
-              >
-                Logout
-              </button> */}
+
               <LogoutButton />
             </div>
           ) : (
