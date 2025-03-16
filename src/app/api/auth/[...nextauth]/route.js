@@ -58,18 +58,18 @@ export const authOptions = {
     signIn: '/login',
     error: '/auth/error',
   },
-  cookies: {
-    sessionToken: {
-      name: `__Secure-next-auth.session-token`,
-      options: {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'lax',
-        path: '/',
-      },
-    },
-  },
-  debug: process.env.NODE_ENV === 'production', // Enable debug in production
+  // cookies: {
+  //   sessionToken: {
+  //     name: `__Secure-next-auth.session-token`,
+  //     options: {
+  //       httpOnly: true,
+  //       secure: process.env.NODE_ENV === 'production',
+  //       sameSite: 'lax',
+  //       path: '/',
+  //     },
+  //   },
+  // },
+  // debug: process.env.NODE_ENV === 'production', // Enable debug in production
 };
 
 const handler = NextAuth(authOptions);
