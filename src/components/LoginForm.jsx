@@ -9,15 +9,15 @@ export default function LoginForm() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setError('');
 
-    await signIn('credentials', {
+    const { error } = await signIn('credentials', {
       redirect: false,
       email,
       password,
     });
+
     if (error) {
-      setError(data.error);
+      setError(error);
     } else {
       window.location.href = '/dashboard';
     }
