@@ -5,9 +5,9 @@ import { connectToDatabase } from '@/lib/mongodb';
 //get single product
 export async function GET(req, { params }) {
   await connectToDatabase();
-  // const { id } = params;
+  const { id } = await params;
   try {
-    const product = await Product.findById(params.id);
+    const product = await Product.findById(id);
     if (!product) {
       return NextResponse.json(
         { message: 'Product not found' },
@@ -25,7 +25,7 @@ export async function GET(req, { params }) {
 //update
 export async function PUT(req, { params }) {
   await connectToDatabase();
-  const { id } = params;
+  const { id } = await params;
   const data = await req.json();
 
   try {
@@ -51,7 +51,7 @@ export async function PUT(req, { params }) {
 
 export async function DELETE(req, { params }) {
   await connectToDatabase();
-  const { id } = params;
+  const { id } = await params;
 
   try {
     const deletedProduct = await Product.findByIdAndDelete(id);

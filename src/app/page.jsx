@@ -16,7 +16,7 @@ export default function Home() {
     try {
       const res = await fetch('/api/categories');
       const data = await res.json();
-      setCategories(data);
+      setCategories(data.categories);
     } catch (error) {
       console.error('Error fetching categories:', error);
     }
@@ -76,8 +76,8 @@ export default function Home() {
           }}
         >
           <option value=''>All Categories</option>
-          {categories.map((cat) => (
-            <option key={cat} value={cat}>
+          {categories.map((cat, index) => (
+            <option key={index} value={cat}>
               {cat}
             </option>
           ))}
@@ -93,7 +93,6 @@ export default function Home() {
               className='bg-white p-4 rounded-lg shadow-md'
             >
               <Link
-                key={product._id}
                 href={`/product/${product._id}`} // Link to product details page
                 className='block bg-white p-4 rounded-lg shadow-md cursor-pointer'
               >

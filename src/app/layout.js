@@ -6,7 +6,7 @@ import Footer from '@/components/Footer';
 
 export default function Layout({ children }) {
   return (
-    <html>
+    <html data-theme='dark'>
       <body>
         <SessionProvider>
           <div className='flex flex-col min-h-screen'>
