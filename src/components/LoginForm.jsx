@@ -1,6 +1,7 @@
 'use client';
 import { signIn } from 'next-auth/react';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 export default function LoginForm() {
   const [email, setEmail] = useState('');
@@ -15,7 +16,7 @@ export default function LoginForm() {
       email,
       password,
     });
-
+    toast.success('Logged in successfully!');
     if (error) {
       setError(error);
     } else {

@@ -2,14 +2,15 @@
 
 import { useState } from 'react';
 import SubscribeForm from './SubscribeForm';
+import { toast } from 'react-toastify';
 
 export default function Footer() {
   const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
+  // const [message, setMessage] = useState('');
 
   const handleSubscribe = async (e) => {
     e.preventDefault();
-    setMessage('');
+    // setMessage('');
 
     const res = await fetch('/api/subscribe', {
       method: 'POST',
@@ -18,7 +19,9 @@ export default function Footer() {
     });
 
     const data = await res.json();
-    setMessage(data.message);
+    // setMessage(data.message);
+    toast.success(data.message);
+
     if (res.ok) setEmail('');
   };
 
@@ -35,7 +38,7 @@ export default function Footer() {
           handleSubscribe={handleSubscribe}
           email={email}
           setEmail={setEmail}
-          message={message}
+          // message={message}
         />
       </div>
 

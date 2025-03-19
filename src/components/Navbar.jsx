@@ -20,12 +20,12 @@ export default function Navbar() {
   }, [darkMode]);
 
   return (
-    <nav className='bg-white dark:bg-gray-900 shadow-md fixed top-0 left-0 w-full z-50'>
+    <nav className='bg-white dark:bg-gray-900 shadow-md'>
       <div className='max-w-7xl mx-auto px-6 py-4 flex justify-between items-center'>
         {/* Logo */}
         <Link href='/'>
           <h1 className='text-2xl font-bold text-gray-900 dark:text-white'>
-            Affiliate Best
+            Smart Shopper Hub
           </h1>
         </Link>
 

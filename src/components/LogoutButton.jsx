@@ -1,6 +1,7 @@
 'use client';
 import { signOut } from 'next-auth/react';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 export default function LogoutButton() {
   const [loading, setLoading] = useState(false);
@@ -8,6 +9,8 @@ export default function LogoutButton() {
   const handleLogout = async () => {
     setLoading(true);
     await signOut({ callbackUrl: '/' });
+    toast.success('Logged out successfully!');
+    setLoading(false);
   };
 
   return (

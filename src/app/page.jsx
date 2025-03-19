@@ -32,10 +32,12 @@ export default function Home() {
       const data = await res.json();
 
       setProducts(data.products);
-      setLoading(false);
+
       setTotalPages(data.pages || 1);
     } catch (error) {
       console.error('Error fetching products:', error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -45,11 +47,11 @@ export default function Home() {
   }, [page, searchQuery, category]);
 
   if (loading) {
-    return <div className='text-center'>Loading...</div>;
+    return <div className='loader'></div>;
   } // Show loading spinner
 
   return (
-    <div className='bg-gray-100 p-6'>
+    <div className='bg-gray-100 p-6 min-h-screen'>
       <h1 className='text-4xl font-bold text-center mb-6'>Featured Products</h1>
 
       {/* Search & Category Filter */}
