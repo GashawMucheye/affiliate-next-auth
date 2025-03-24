@@ -1,15 +1,7 @@
 @import 'tailwindcss';
 
 .loader {
-  width: 60px;
-  height: 60px;
-  text-align: center;
-  margin: auto;
-  border-radius: 50%;
-  border-top: gray 3px solid;
-  border-bottom: gray 3px solid;
-
-  animation: spin 1s linear infinite;
+  @apply w-16 h-16 border-4 border-t-gray-500 border-b-gray-500 rounded-full animate-spin mx-auto;
 }
 
 @keyframes spin {
@@ -19,4 +11,8 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+.btn-blue {
+  @apply block mt-2 text-blue-500 hover:underline;
 }

@@ -15,9 +15,11 @@ export default function Home() {
   // Fetch categories (Assuming you have an API for categories)
   const fetchCategories = async () => {
     try {
+      setLoading(true);
       const res = await fetch('/api/categories');
       const data = await res.json();
       setCategories(data.categories);
+      setLoading(false);
     } catch (error) {
       console.error('Error fetching categories:', error);
     }
@@ -113,11 +115,7 @@ export default function Home() {
               <h2 className='text-lg font-semibold mt-2'>{product.title}</h2>
               <p className='text-gray-600'>Category: {product.category}</p>
               <p className='text-green-600 font-bold'>${product.price}</p>
-              <Link
-                href={product.link}
-                target='_blank'
-                className='block mt-2 text-blue-500 hover:underline'
-              >
+              <Link href={product.link} target='_blank' className='btn-blue'>
                 Buy Now
               </Link>
             </div>

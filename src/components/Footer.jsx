@@ -42,7 +42,7 @@ export default function Footer() {
         />
       </div>
 
-      <div className='border-t border-gray-700 mt-8 pt-6 text-center text-gray-400'>
+      <div className='border-t border-gray-700 mt-8 pt-6 text-center text-gray-400 '>
         <p>
           &copy; {new Date().getFullYear()} Affiliate Website. All rights
           reserved.

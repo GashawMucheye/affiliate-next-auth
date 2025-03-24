@@ -13,7 +13,7 @@ export default function Layout({ children }) {
           <div className='flex flex-col min-h-screen'>
             <Navbar />
 
-            <div className='min-h-screen'>{children}</div>
+            <div className='min-h-screen mt-16'>{children}</div>
             <Footer />
           </div>
           <ToastContainer />

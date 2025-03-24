@@ -20,8 +20,8 @@ export default function Navbar() {
   }, [darkMode]);
 
   return (
-    <nav className='bg-white dark:bg-gray-900 shadow-md fixed w-full z-50 top-0'>
-      <div className='max-w-7xl mx-auto px-6 py-4 flex justify-between items-center'>
+    <nav className='bg-white dark:bg-gray-900 shadow-md fixed top-0 left-0 w-full z-50'>
+      <div className='max-w-7xl mx-auto px-6 py-3 flex justify-between items-center'>
         {/* Logo */}
         <Link href='/'>
           <h1 className='text-2xl font-bold text-gray-900 dark:text-white'>
