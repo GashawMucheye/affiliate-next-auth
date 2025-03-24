@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
 
 export default function Home() {
@@ -10,6 +10,7 @@ export default function Home() {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(false);
+  const inputRef = useRef(null);
 
   // Fetch categories (Assuming you have an API for categories)
   const fetchCategories = async () => {
@@ -50,14 +51,19 @@ export default function Home() {
     return <div className='loader'></div>;
   } // Show loading spinner
 
+  if (inputRef.current) {
+    inputRef.current.focus(); // Focus search input on page load
+  }
+
   return (
-    <div className='bg-gray-100 p-6 min-h-screen'>
+    <div className='bg-gray-100 p-6 mt-16 min-h-screen'>
       <h1 className='text-4xl font-bold text-center mb-6'>Featured Products</h1>
 
       {/* Search & Category Filter */}
       <div className='mb-4 flex justify-center gap-4'>
         {/* Search Input */}
         <input
+          ref={inputRef}
           type='text'
           placeholder='Search products...'
           className='p-2 border rounded w-full max-w-md'
